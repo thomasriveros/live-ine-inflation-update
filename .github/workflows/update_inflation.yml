@@ -29,7 +29,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run data pipeline
-        run: python clean_inflation_data.py
+        run: |
+          python clean_inflation_data.py
+          python calculate_core_5.py
 
       - name: Check for new data and commit
         run: |
