@@ -1,0 +1,10 @@
+# Ignore local temporary downloaded Excel files
+temp/
+*.xlsx
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore macOS system files
+.DS_Store
