@@ -11,12 +11,88 @@ import re
 import pandas as pd
 import requests
 
-# Nextcloud download URLs and local paths mapping
-DOWNLOAD_MAP = {
-    "https://nube.ine.gob.bo/index.php/s/O4cCdvtUXQrhpNd/download": "temp/national_CPI.xlsx",
-    "https://nube.ine.gob.bo/index.php/s/J4dSH7CTeHwL8SS/download": "temp/national_CPI_by_category.xlsx",
-    "https://nube.ine.gob.bo/index.php/s/VorZQVesKBFcEhE/download": "temp/city_level_CPI.xlsx"
+# INE WordPress REST API endpoints — these page IDs are stable and don't change month to month.
+# The actual Nextcloud share links inside each page do change with every data release,
+# so we fetch them dynamically at runtime instead of hardcoding them.
+INE_API_PAGES = {
+    "nacional": "https://www.ine.gob.bo/index.php/wp-json/wp/v2/pages/43721",
+    "ciudades": "https://www.ine.gob.bo/index.php/wp-json/wp/v2/pages/44067",
 }
+
+def fetch_ine_download_urls():
+    """
+    Dynamically discovers the current Nextcloud download URLs from INE's WordPress REST API.
+
+    INE updates two stable WordPress pages each month with new Nextcloud share links.
+    This function fetches those pages, parses the link text to identify the three
+    target files, and returns a download map identical in structure to the old
+    hardcoded DOWNLOAD_MAP — so the rest of the script needs no changes.
+
+    Target files identified by keywords in their Spanish link text:
+      - national_CPI.xlsx          : national page, "Índice General" with NO "División"
+      - national_CPI_by_category   : national page, link containing "División"
+      - city_level_CPI.xlsx        : cities page,   link containing "División"
+    """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+    }
+    # Regex to extract all Nextcloud href + link text pairs from the rendered HTML
+    link_pattern = re.compile(
+        r'href="(https://nube\.ine\.gob\.bo/[^"]+)"[^>]*>(.*?)</a>',
+        re.IGNORECASE | re.DOTALL
+    )
+
+    def get_page_links(api_url):
+        """Fetch one API page and return a list of (url, plain_text) tuples."""
+        resp = requests.get(api_url, headers=headers, timeout=30)
+        resp.raise_for_status()
+        html = resp.json()["content"]["rendered"]
+        matches = link_pattern.findall(html)
+        # Strip any residual HTML tags from the link text
+        return [(url, re.sub(r'<[^>]+>', '', text).strip()) for url, text in matches]
+
+    def find_url(links, must_contain, must_not_contain=()):
+        """Return the first URL whose link text satisfies the keyword rules."""
+        for url, text in links:
+            text_lower = text.lower()
+            if all(kw.lower() in text_lower for kw in must_contain):
+                if not any(kw.lower() in text_lower for kw in must_not_contain):
+                    return url
+        raise ValueError(
+            f"Could not find a link matching must_contain={must_contain!r} "
+            f"must_not_contain={must_not_contain!r} in: {links}"
+        )
+
+    print("Fetching current download URLs from INE website...")
+    national_links = get_page_links(INE_API_PAGES["nacional"])
+    cities_links   = get_page_links(INE_API_PAGES["ciudades"])
+
+    url_f1 = find_url(
+        national_links,
+        must_contain=["ndice General"],          # matches "Índice General"
+        must_not_contain=["divisi", "ciudad", "alimento", "producto"],
+    )
+    url_f2 = find_url(
+        national_links,
+        must_contain=["divisi"],                 # "por División"
+    )
+    url_f3 = find_url(
+        cities_links,
+        must_contain=["divisi"],                 # "según división" on the cities page
+    )
+
+    download_map = {
+        url_f1: "temp/national_CPI.xlsx",
+        url_f2: "temp/national_CPI_by_category.xlsx",
+        url_f3: "temp/city_level_CPI.xlsx",
+    }
+
+    print("Resolved download URLs:")
+    for url, dest in download_map.items():
+        print(f"  {dest:45s} <- {url}")
+
+    return download_map
 
 def download_file(url, dest_path):
     """
@@ -154,11 +230,17 @@ def main():
     os.makedirs("temp", exist_ok=True)
     os.makedirs("data", exist_ok=True)
     
-    # --- Download source Excel files ---
+    # --- Discover current download URLs from INE website, then download ---
+    print("="*60)
+    print("FETCHING CURRENT DOWNLOAD URLS FROM INE WEBSITE")
+    print("="*60)
+    download_map = fetch_ine_download_urls()
+    print()
+
     print("="*60)
     print("DOWNLOADING SOURCE EXCEL FILES FROM NEXTCLOUD")
     print("="*60)
-    for url, dest in DOWNLOAD_MAP.items():
+    for url, dest in download_map.items():
         download_file(url, dest)
     print("All source files successfully downloaded!\n")
     
