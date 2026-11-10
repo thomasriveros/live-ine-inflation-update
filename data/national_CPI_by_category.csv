@@ -104,6 +104,7 @@ date,CPI level,category
 2026-07-01,157.0051903762,Alimentos y bebidas consumidos fuera del hogar
 2026-08-01,158.6419805751,Alimentos y bebidas consumidos fuera del hogar
 2026-09-01,159.9391855558,Alimentos y bebidas consumidos fuera del hogar
+2026-10-01,162.2223746539,Alimentos y bebidas consumidos fuera del hogar
 2018-01-01,101.5792088842,Alimentos y bebidas no alcohólicas
 2018-02-01,101.9209538323,Alimentos y bebidas no alcohólicas
 2018-03-01,101.4735822479,Alimentos y bebidas no alcohólicas
@@ -209,6 +210,7 @@ date,CPI level,category
 2026-07-01,168.9526755937,Alimentos y bebidas no alcohólicas
 2026-08-01,171.717832563,Alimentos y bebidas no alcohólicas
 2026-09-01,172.9749092375,Alimentos y bebidas no alcohólicas
+2026-10-01,178.8401354895,Alimentos y bebidas no alcohólicas
 2018-01-01,99.4463634195,Bebidas alcohólicas y tabaco
 2018-02-01,100.9490463835,Bebidas alcohólicas y tabaco
 2018-03-01,100.750174722,Bebidas alcohólicas y tabaco
@@ -314,6 +316,7 @@ date,CPI level,category
 2026-07-01,129.5557712274,Bebidas alcohólicas y tabaco
 2026-08-01,130.6041420606,Bebidas alcohólicas y tabaco
 2026-09-01,131.979438051,Bebidas alcohólicas y tabaco
+2026-10-01,134.176746818,Bebidas alcohólicas y tabaco
 2018-01-01,99.0037044057,Bienes y servicios diversos
 2018-02-01,99.583262735,Bienes y servicios diversos
 2018-03-01,99.6746716917,Bienes y servicios diversos
@@ -419,6 +422,7 @@ date,CPI level,category
 2026-07-01,151.557058157,Bienes y servicios diversos
 2026-08-01,153.3025773845,Bienes y servicios diversos
 2026-09-01,154.3956354755,Bienes y servicios diversos
+2026-10-01,155.8940077752,Bienes y servicios diversos
 2018-01-01,96.9162595682,Comunicaciones
 2018-02-01,96.8707549808,Comunicaciones
 2018-03-01,96.9582949186,Comunicaciones
@@ -524,6 +528,7 @@ date,CPI level,category
 2026-07-01,99.4659721603,Comunicaciones
 2026-08-01,100.8065729774,Comunicaciones
 2026-09-01,101.7593295981,Comunicaciones
+2026-10-01,102.7525827481,Comunicaciones
 2018-01-01,106.5661659246,Educación
 2018-02-01,108.1446529472,Educación
 2018-03-01,108.2350382127,Educación
@@ -629,6 +634,7 @@ date,CPI level,category
 2026-07-01,143.090650177,Educación
 2026-08-01,144.5425405578,Educación
 2026-09-01,144.5623148275,Educación
+2026-10-01,144.6137714135,Educación
 2018-01-01,101.7446680589,"Muebles, bienes y servicios domésticos"
 2018-02-01,101.7686091098,"Muebles, bienes y servicios domésticos"
 2018-03-01,101.5361069792,"Muebles, bienes y servicios domésticos"
@@ -734,6 +740,7 @@ date,CPI level,category
 2026-07-01,148.7838828908,"Muebles, bienes y servicios domésticos"
 2026-08-01,151.2631236192,"Muebles, bienes y servicios domésticos"
 2026-09-01,154.1340101539,"Muebles, bienes y servicios domésticos"
+2026-10-01,157.0196092971,"Muebles, bienes y servicios domésticos"
 2018-01-01,96.8972159153,Prendas de vestir y calzado
 2018-02-01,96.844004869,Prendas de vestir y calzado
 2018-03-01,96.4018490026,Prendas de vestir y calzado
@@ -839,6 +846,7 @@ date,CPI level,category
 2026-07-01,131.3766861281,Prendas de vestir y calzado
 2026-08-01,132.8962783278,Prendas de vestir y calzado
 2026-09-01,134.2994825293,Prendas de vestir y calzado
+2026-10-01,135.7095499093,Prendas de vestir y calzado
 2018-01-01,98.4557402494,Recreación y cultura
 2018-02-01,99.0139457148,Recreación y cultura
 2018-03-01,99.2024582543,Recreación y cultura
@@ -944,6 +952,7 @@ date,CPI level,category
 2026-07-01,129.8537398173,Recreación y cultura
 2026-08-01,131.5729982678,Recreación y cultura
 2026-09-01,132.328538073,Recreación y cultura
+2026-10-01,132.8511574059,Recreación y cultura
 2018-01-01,101.8844649529,Salud
 2018-02-01,102.089217598,Salud
 2018-03-01,102.3923567424,Salud
@@ -1049,6 +1058,7 @@ date,CPI level,category
 2026-07-01,157.7690486572,Salud
 2026-08-01,159.0228482355,Salud
 2026-09-01,160.8399878223,Salud
+2026-10-01,161.5373650639,Salud
 2018-01-01,101.3548166281,Transporte
 2018-02-01,101.2738375281,Transporte
 2018-03-01,101.0228408327,Transporte
@@ -1154,6 +1164,7 @@ date,CPI level,category
 2026-07-01,166.7890873017,Transporte
 2026-08-01,165.9376234045,Transporte
 2026-09-01,167.9283133486,Transporte
+2026-10-01,173.8008913333,Transporte
 2018-01-01,104.600438502,Vivienda y servicios básicos
 2018-02-01,104.753637102,Vivienda y servicios básicos
 2018-03-01,104.7624969122,Vivienda y servicios básicos
@@ -1259,6 +1270,7 @@ date,CPI level,category
 2026-07-01,124.763905841,Vivienda y servicios básicos
 2026-08-01,125.4566174917,Vivienda y servicios básicos
 2026-09-01,125.9224628249,Vivienda y servicios básicos
+2026-10-01,128.2294184162,Vivienda y servicios básicos
 2018-01-01,101.1676158287,ÍNDICE GENERAL
 2018-02-01,101.4905047625,ÍNDICE GENERAL
 2018-03-01,101.3609293777,ÍNDICE GENERAL
@@ -1364,3 +1376,4 @@ date,CPI level,category
 2026-07-01,149.9203193574,ÍNDICE GENERAL
 2026-08-01,151.5691542872,ÍNDICE GENERAL
 2026-09-01,152.8502227818,ÍNDICE GENERAL
+2026-10-01,156.014134247,ÍNDICE GENERAL
